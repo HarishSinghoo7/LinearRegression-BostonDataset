@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Boston House Price Prediction</title>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="navbar navbar-dark bg-primary">
+            <div class="text-center h2">Boston House Price Prediction</div>
+        </div>
+
+        <form action="/" method="post">
+            <div class="col-xs-6 col-xs-offset-3">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <input type="text" name="indus" id="indus" class="form-control" placeholder="INDUS" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="nox" id="nox" class="form-control" placeholder="NOX" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="rm" id="rm" class="form-control" placeholder="RM" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="age" id="age" class="form-control" placeholder="AGE" required>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <input type="text" name="tax" id="tax" class="form-control" placeholder="TAX" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="ptratio" id="ptratio" class="form-control" placeholder="PTRATIO" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="lstat" id="lstat" class="form-control" placeholder="LSTAT" required>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group text-center">
+                            <input type="submit" value="Predict" class="btn btn-predict btn-success">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {% if response %}
+    <div class="col-xs-12">
+        <hr>
+    </div>
+    <div class="col-xs-12">
+        <div class="h3">Prediction Result</div>
+        <table class="table table-stripped table-bordered">
+            <tr>
+                <th>INDUS</th>
+                <th>NOX</th>
+                <th>RM</th>
+                <th>AGE</th>
+                <th>TAX</th>
+                <th>PTRATIO</th>
+                <th>LSTAT</th>
+                <th>Predicted Price</th>
+            </tr>
+            <tr>
+                <td>{{ response.features.indus }}</td>
+                <td>{{ response.features.nox }}</td>
+                <td>{{ response.features.rm }}</td>
+                <td>{{ response.features.age }}</td>
+                <td>{{ response.features.tax }}</td>
+                <td>{{ response.features.ptratio }}</td>
+                <td>{{ response.features.lstat }}</td>
+                <td>$ {{ response.predicted_price }}</td>
+            </tr>
+        </table>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    .btn-predict{width:50%}
+</style>
+{% endblock %}
