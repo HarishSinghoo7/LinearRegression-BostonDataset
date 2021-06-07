@@ -16,6 +16,6 @@ def homePage():
         return render_template('index.html', response = {'features': features, 'predicted_price': predicted_price})
 
 if __name__ == '__main__':
-    application.run(port=8080, debug=True)
+    application.run(debug=True)
 
 
