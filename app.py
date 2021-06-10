@@ -2,9 +2,9 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS, cross_origin
 from boston_price_prediction.boston_price_prediction import BostonPricePrediction
 
-application = Flask(__name__)
+app = Flask(__name__)
 
-@application.route('/', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 @cross_origin()
 def homePage():
     if request.method == 'GET':
@@ -16,6 +16,6 @@ def homePage():
         return render_template('index.html', response = {'features': features, 'predicted_price': predicted_price})
 
 if __name__ == '__main__':
-    application.run(debug=True)
+    app.run(debug=True)
 
 
